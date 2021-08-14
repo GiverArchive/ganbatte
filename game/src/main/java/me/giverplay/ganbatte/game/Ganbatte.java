@@ -1,18 +1,18 @@
 package me.giverplay.ganbatte.game;
 
 public class Ganbatte {
-  private final GameLooping looping;
+  private final GameLoop loop;
 
   public Ganbatte() {
-    this.looping = new GameLooping(this);
+    this.loop = new GameLoop(this);
   }
 
   public synchronized void start() {
-    this.looping.start();
+    this.loop.start();
   }
 
   public synchronized void stop() {
-    this.looping.stop();
+    this.loop.stop();
   }
 
   protected void update() {

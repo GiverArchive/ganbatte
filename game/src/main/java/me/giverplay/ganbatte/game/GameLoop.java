@@ -1,19 +1,19 @@
 package me.giverplay.ganbatte.game;
 
-public class GameLooping implements Runnable {
+public class GameLoop implements Runnable {
   private final Ganbatte game;
 
   private Thread thread;
 
   private volatile boolean isRunning;
 
-  public GameLooping(Ganbatte game) {
+  public GameLoop(Ganbatte game) {
     this.game = game;
   }
 
   public synchronized void start() {
     this.isRunning = true;
-    this.thread = new Thread(this, "Game Looping Thread");
+    this.thread = new Thread(this, "Game Loop");
     this.thread.start();
   }
 
