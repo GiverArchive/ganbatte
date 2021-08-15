@@ -2,6 +2,7 @@ package me.giverplay.ganbatte.screen;
 
 import javax.swing.JFrame;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 
 public class Window {
@@ -10,6 +11,7 @@ public class Window {
 
   private final JFrame frame;
   private final Canvas canvas;
+  private final Renderer renderer;
 
   public Window(String title, int width, int height) {
     this.width = width;
@@ -24,6 +26,9 @@ public class Window {
     frame.add(canvas);
     frame.pack();
     frame.setLocationRelativeTo(null);
+
+    canvas.createBufferStrategy(3);
+    renderer = new Renderer(canvas.getBufferStrategy(), width, height, new Color(0x939090));
   }
 
   public void show() {
@@ -40,5 +45,9 @@ public class Window {
 
   public int getHeight() {
     return height;
+  }
+
+  public Renderer getRenderer() {
+    return renderer;
   }
 }
