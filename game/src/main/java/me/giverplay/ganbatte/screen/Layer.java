@@ -1,40 +1,54 @@
 package me.giverplay.ganbatte.screen;
 
-import java.util.Arrays;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 public class Layer {
-  private final int[] pixels;
+  private final BufferedImage image;
+  private Graphics graphics;
 
-  private final int width;
-  private final int height;
+  public Layer(BufferedImage image) {
+    if(image == null) {
+      throw new IllegalArgumentException("Image cannot be null!");
+    }
 
-  public Layer(int width, int height) {
-    if(width < 1) throw new IllegalArgumentException("Width cannot be less than 1");
-    if(height < 1) throw new IllegalArgumentException("Height cannot be less than 1");
-
-    this.width = width;
-    this.height = height;
-
-    this.pixels = new int[width * height];
+    this.image = image;
+    resetGraphics();
   }
 
   public int getPixel(int x, int y) {
-    return pixels[x + y * width];
+    return image.getRGB(x, y);
   }
 
   public void setPixel(int x, int y, int color) {
-    pixels[x + y * width] = color;
+    image.setRGB(x, y, color);
   }
 
   public int getWidth() {
-    return width;
+    return image.getWidth();
   }
 
   public int getHeight() {
-    return height;
+    return image.getHeight();
   }
 
   public int[] getPixels() {
-    return Arrays.copyOf(pixels, pixels.length);
+    return image.getRGB(0, 0, getWidth(), getHeight(), null, getWidth(), getWidth());
+  }
+
+  public void resetGraphics() {
+    if(graphics != null) {
+      graphics.dispose();
+    }
+
+    graphics = image.getGraphics();
+  }
+
+  public Graphics getGraphics() {
+    return graphics;
+  }
+
+  public BufferedImage getImage() {
+    return image;
   }
 }
