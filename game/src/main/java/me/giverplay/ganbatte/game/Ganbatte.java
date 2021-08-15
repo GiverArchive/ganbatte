@@ -31,6 +31,7 @@ public class Ganbatte {
   }
 
   protected void draw() {
+    renderer.clear();
     Graphics graphics = renderer.getRootLayer().getGraphics();
     graphics.setColor(Color.RED);
     graphics.drawRect(10, 20, 40, 50);

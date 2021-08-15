@@ -28,10 +28,22 @@ public class Renderer {
   }
 
   public void render() {
-    graphics.setColor(BACKGROUND_COLOR);
-    graphics.fillRect(0, 0, getWidth(), getHeight());
     graphics.drawImage(rootLayer.getImage(), 0, 0, null);
     bufferStrategy.show();
+  }
+
+  public void clear() {
+    clear(BACKGROUND_COLOR);
+  }
+
+  public void clear(Color color) {
+    clear(graphics, color);
+    clear(rootLayer.getGraphics(), color);
+  }
+
+  private void clear(Graphics graphics, Color color) {
+    graphics.setColor(color);
+    graphics.fillRect(0, 0, getWidth(), getHeight());
   }
 
   public Layer getRootLayer() {
